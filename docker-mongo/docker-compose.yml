@@ -1,0 +1,23 @@
+version: "3"
+services:
+  mongo:
+    image: "mongo:latest"
+    container_name: mongo-dev
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+  mongo-express:
+    image: "mongo-express:latest"
+    container_name: mongo-express
+    depends_on:
+      - mongo
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_OPTIONS_EDITORTHEME: default
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGOEXPRESS_USER}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGOEXPRESS_PASSWORD}     
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+    

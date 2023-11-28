@@ -1,0 +1,40 @@
+version: "3"
+services:
+  pgsql:
+    image: postgres:latest
+    container_name: pgsql-dev
+    restart: unless-stopped
+    ports:
+      - "5454:5432"
+    networks:
+      - postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test1234
+    # volumes:
+    #   - local_pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    links:
+      - pgsql
+    depends_on:
+      - pgsql
+    restart: unless-stopped
+    ports:
+      - "4001:80"
+    networks:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+    # volumes:
+    #   - pgadmin-data:/var/lib/pgadmin
+
+networks:
+  postgres:
+    driver: bridge
+
+# volumes:
+#   local_pgdata:
+#   pgadmin-data:
