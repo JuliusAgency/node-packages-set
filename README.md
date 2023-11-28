@@ -48,6 +48,14 @@ The set contains the following groups:
 ```
 #### 2. Run/stop the relevant data base (MongoDb/Postgres) from this repository
 ```bash
+sudo docker pull mongo:latest
+sudo docker pull mongo-express
+   or:
+docker pull postgres
+docker pull dpage/pgadmin4
+
+sudo apt  install docker-compose
+
 cd docker-<mongo/pgsql>
 sudo docker-compose up -d
 sudo docker-compose stop
