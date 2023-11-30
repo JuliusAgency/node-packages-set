@@ -32,7 +32,10 @@ The set contains the following groups:
       - authorization-jwt-sql-set Coming soon   
       - authorization-ses-mongo-set <[Repo](https://github.com/JuliusAgency/authorization-ses-mongo-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-ses-mongo-set)>   
       - authorization-ses-sql-set <[Repo](https://github.com/JuliusAgency/authorization-ses-sql-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-ses-sql-set)>   
-      - simple-emailer <[Repo](https://github.com/JuliusAgency/simple-emailer)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-emailer)>
+      - simple-emailer <[Repo](https://github.com/JuliusAgency/simple-emailer)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-emailer)>  
+      - simple-error-handler <[Repo](https://github.com/JuliusAgency/simple-error-handler)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-error-handler)>  
+      - simple-logger <[Repo](https://github.com/JuliusAgency/simple-logger)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-logger)>  
+      - http-logger <[Repo](https://github.com/JuliusAgency/http-logger)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/http-logger)>  
 
    3. Starters - applications are built with one of the public packages.  
       Are dedicated to be used for developing an application without coding several base features.
@@ -42,10 +45,32 @@ The set contains the following groups:
       - node-starter-with-auth-ses-mongo <[Repo](https://github.com/JuliusAgency/node-starter-with-auth-ses-mongo)>
 
  ### Prepare for usage(to develope your own application) of a starter:
-#### 1. Clone the relevant starter
+#### 1. Create a folder:
 ```bash
 
+```bash
+mkdir <new-application-name>
+cd <new-application-name>
 ```
+
+#### 2. Clone the relevant starter, remove git repo and create new one:
+```bash
+git clone https://github.com/JuliusAgency/node-starter-with-<your-choice>.git .
+rm -r .git
+git init -b main
+```
+
+#### 3. Install:
+```bash
+npm install
+```
+
+#### 4. Activate Git hooks:
+```bash
+npm run prepare
+```
+Note: After the command is executed once, the Git hooks will run automatically before each commit and push.
+
 #### 2. Run/stop the relevant data base (MongoDb/Postgres) from this repository
 ```bash
 sudo docker pull mongo:latest
@@ -70,8 +95,9 @@ npm run dev
 ```
 ### Develope your own application
 #### 1. Change the User model/entity 
-#### 2. Create new domain(s) folder(s)
+#### 2. Create new domain(s) folder(s) under the app folder  
 #### 3. Write code
+#### 4. Write unit tests
 
 ## Thats all! 
 
