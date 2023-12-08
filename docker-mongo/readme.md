@@ -6,7 +6,12 @@
 sudo docker pull mongo:latest  
 sudo docker pull mongo-express  
 ```
-localhost:8081  
-#### From directory where docker-compose.yml is located:
+
+#### Connect to the mongo-express UI from a browser:
+http://localhost:8081  
+
+#### Start/stop the Db and UI from the directory where the docker-compose.yml is located:
+```bash
 sudo docker-compose up -d  
 sudo docker-compose stop  
+```

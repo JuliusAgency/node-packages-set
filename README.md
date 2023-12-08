@@ -1,50 +1,50 @@
 ## Packages set for NodeJs applications
 
 ### Main goals and motivation
-   The motivation and goals of the set are:  
-      - facilitate and speed up application development process due to the absence of the need for coding and testing of basic features;  
-      - ensure the quality of basic features through automated testing and repeated use in production;  
-      - improved support for basic features;  
-      - and finally reduce the development costs.    
+The motivation and goals of the set are:
+- facilitate and speed up the  application development process due to the absence of the need for coding and testing of basic features;  
+- ensure the quality of basic features through automated testing and repeated usage in production;  
+- improve support for basic features;  
+- and finally, as a consequence reduce the development costs.  
 
 ### Content (not final, will be growing)
 The set contains the following groups:  
    1. Private: - small packages are dedicated to be used as part of a package sets. 
-      - auth-jwt <[Repo](https://github.com/JuliusAgency/auth-jwt)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-jwt)>
-      - auth-session <[Repo](https://github.com/JuliusAgency/auth-session)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-session)>
-      - auth-strategies <[Repo](https://github.com/JuliusAgency/auth-strategies)> <[Registry](https://github.com/JuliusAgency/auth-strategies/pkgs/npm/auth-strategies)>  
-      - base-user-mngr <[Repo](https://github.com/JuliusAgency/base-user-mngr)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/base-user-mngr)>  
-      - base-user-mongo [Github repo](https://github.com/JuliusAgency/base-user-mongo)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/base-user-mongo)>  
-      - base-user-sql <[Repo](https://github.com/JuliusAgency/base-user-sql)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/base-user-sql)>  
-      - authorization-ses-checker <[Repo](https://github.com/JuliusAgency/authorization-ses-checker)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-ses-checker)>   
-      - authorization-jwt-checker Coming soon   
-      - authorization-repo-mongo <[Repo](https://github.com/JuliusAgency/authorization-repo-mongo)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-repo-mongo)>   
-      - authorization-repo-sql <[Repo](https://github.com/JuliusAgency/authorization-repo-sql)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-repo-sql)>   
-      - simple-email-client <[Repo](https://github.com/JuliusAgency/simple-email-client)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-email-client)>   
+      1. auth-jwt <[Repo](https://github.com/JuliusAgency/auth-jwt)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-jwt)>
+      2. auth-session <[Repo](https://github.com/JuliusAgency/auth-session)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-session)>
+      3. auth-strategies <[Repo](https://github.com/JuliusAgency/auth-strategies)> <[Registry](https://github.com/JuliusAgency/auth-strategies/pkgs/npm/auth-strategies)>  
+      4. base-user-mngr <[Repo](https://github.com/JuliusAgency/base-user-mngr)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/base-user-mngr)>  
+      5. base-user-mongo <[Repo](https://github.com/JuliusAgency/base-user-mongo)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/base-user-mongo)>  
+      6. base-user-sql <[Repo](https://github.com/JuliusAgency/base-user-sql)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/base-user-sql)>  
+      7. authorization-ses-checker <[Repo](https://github.com/JuliusAgency/authorization-ses-checker)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-ses-checker)>   
+      8. authorization-jwt-checker <[Repo](https://github.com/JuliusAgency/authorization-jwt-checker)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-jwt-checker)>
+      9. authorization-repo-mongo <[Repo](https://github.com/JuliusAgency/authorization-repo-mongo)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-repo-mongo)>   
+      10. authorization-repo-sql <[Repo](https://github.com/JuliusAgency/authorization-repo-sql)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-repo-sql)>   
+      11. simple-email-client <[Repo](https://github.com/JuliusAgency/simple-email-client)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-email-client)>   
 
    2. Public - sets of combinations of private packages are dedicated to be used in applications directly.  
       Each of these packages is specialized for working with certain databases and flows.
-      - auth-jwt-sql-set <[Repo](https://github.com/JuliusAgency/auth-jwt-sql-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-jwt-sql-set)>  
-      - auth-jwt-mongo-set <[Repo](https://github.com/JuliusAgency/auth-jwt-mongo-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-jwt-mongo-set)>  
-      - auth-ses-sql-set <[Repo](https://github.com/JuliusAgency/auth-ses-sql-set)> <[Registry]()>  
-      - auth-ses-mongo-set <[Repo](https://github.com/JuliusAgency/auth-ses-mongo-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-ses-mongo-set)>  
-      - authorization-jwt-mongo-set Coming soon   
-      - authorization-jwt-sql-set Coming soon   
-      - authorization-ses-mongo-set <[Repo](https://github.com/JuliusAgency/authorization-ses-mongo-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-ses-mongo-set)>   
-      - authorization-ses-sql-set <[Repo](https://github.com/JuliusAgency/authorization-ses-sql-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-ses-sql-set)>   
-      - simple-emailer <[Repo](https://github.com/JuliusAgency/simple-emailer)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-emailer)>  
-      - simple-error-handler <[Repo](https://github.com/JuliusAgency/simple-error-handler)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-error-handler)>  
-      - simple-logger <[Repo](https://github.com/JuliusAgency/simple-logger)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-logger)>  
-      - http-logger <[Repo](https://github.com/JuliusAgency/http-logger)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/http-logger)>  
+      1. auth-jwt-sql-set <[Repo](https://github.com/JuliusAgency/auth-jwt-sql-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-jwt-sql-set)>  
+      2. auth-jwt-mongo-set <[Repo](https://github.com/JuliusAgency/auth-jwt-mongo-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-jwt-mongo-set)>  
+      3. auth-ses-sql-set <[Repo](https://github.com/JuliusAgency/auth-ses-sql-set)> <[Registry]()>  
+      4. auth-ses-mongo-set <[Repo](https://github.com/JuliusAgency/auth-ses-mongo-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/auth-ses-mongo-set)>  
+      5. authorization-jwt-mongo-set <[Repo](https://github.com/JuliusAgency/authorization-jwt-mongo-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-jwt-mongo-set)>
+      6. authorization-jwt-sql-set <[Repo](https://github.com/JuliusAgency/authorization-jwt-sql-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-jwt-sql-set)>   
+      7. authorization-ses-mongo-set <[Repo](https://github.com/JuliusAgency/authorization-ses-mongo-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-ses-mongo-set)>   
+      8. authorization-ses-sql-set <[Repo](https://github.com/JuliusAgency/authorization-ses-sql-set)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/authorization-ses-sql-set)>   
+      9. simple-emailer <[Repo](https://github.com/JuliusAgency/simple-emailer)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-emailer)>  
+      10. simple-error-handler <[Repo](https://github.com/JuliusAgency/simple-error-handler)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-error-handler)>  
+      11. simple-logger <[Repo](https://github.com/JuliusAgency/simple-logger)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/simple-logger)>  
+      12. http-logger <[Repo](https://github.com/JuliusAgency/http-logger)> <[Registry](https://github.com/orgs/JuliusAgency/packages/npm/package/http-logger)>  
 
    3. Starters - applications are built with one of the public packages.  
       Are dedicated to be used for developing an application without coding several base features.
-      - node-starter-with-auth-jwt-sql <[Repo](https://github.com/JuliusAgency/node-starter-with-auth-jwt-sql)>  
-      - node-starter-with-auth-jwt-mongo <[Repo](https://github.com/JuliusAgency/node-starter-with-auth-jwt-mongo)>  
-      - node-starter-with-auth-ses-sql <[Repo](https://github.com/JuliusAgency/node-starter-with-auth-ses-sql)>
-      - node-starter-with-auth-ses-mongo <[Repo](https://github.com/JuliusAgency/node-starter-with-auth-ses-mongo)>
+      1. node-starter-with-auth-jwt-sql <[Repo](https://github.com/JuliusAgency/node-starter-with-auth-jwt-sql)>  
+      2. node-starter-with-auth-jwt-mongo <[Repo](https://github.com/JuliusAgency/node-starter-with-auth-jwt-mongo)>  
+      3. node-starter-with-auth-ses-sql <[Repo](https://github.com/JuliusAgency/node-starter-with-auth-ses-sql)>
+      4. node-starter-with-auth-ses-mongo <[Repo](https://github.com/JuliusAgency/node-starter-with-auth-ses-mongo)>
 
- ### Prepare for usage(to develope your own application) of a starter:
+### The preparation for usage(to develop own application) of a starter:
 #### 1. Create a folder:
 ```bash
 
@@ -71,26 +71,20 @@ npm run prepare
 ```
 Note: After the command is executed once, the Git hooks will run automatically before each commit and push.
 
-#### 2. Run/stop the relevant data base (MongoDb/Postgres) from this repository
+#### 2. Prepare to the usage of containerized data bases and it's UIs
 ```bash
-sudo docker pull mongo:latest
-sudo docker pull mongo-express
-   or:
-docker pull postgres
-docker pull dpage/pgadmin4
-
 sudo apt  install docker-compose
-
-cd docker-<mongo/pgsql>
-sudo docker-compose up -d
-sudo docker-compose stop
 ```
-#### 3. Run the starter 
+#### 3. Usage of the containerized data bases and it's UIs
+[MongoDb](./docker-mongo/readme.md)   
+[PostgresSql](./docker-pgsql/readme.md)   
+
+#### 4. Run the starter 
 ```bash
 cd ..
 npm run dev
 ```
-#### 4. Run the sanity test suit
+#### 5. Run the sanity test suit
 ```bash
 ```
 ### Develope your own application
