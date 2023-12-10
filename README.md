@@ -248,10 +248,8 @@ The set contains the following groups:
 </tbody>
 </table></div>
 
-### The preparation for develop new application based on a starter:
+### The preparation for developing a new application based on a starter:
 #### 1. Create a folder:
-```bash
-
 ```bash
 mkdir <new-application-name>
 cd <new-application-name>
@@ -259,7 +257,7 @@ cd <new-application-name>
 
 #### 2. Clone the relevant starter, remove git repo and create new one:
 ```bash
-git clone https://github.com/JuliusAgency/node-starter-with-<your-choice>.git .
+git clone https://github.com/JuliusAgency/node-starter-with-<relevant starter>.git .
 rm -r .git
 git init -b main
 ```

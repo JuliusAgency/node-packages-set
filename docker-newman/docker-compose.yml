@@ -1,0 +1,11 @@
+postman:
+  image: postman/newman:alpine
+  container_name: postmanTests
+  command:
+    run FastRestAPITests.postman_collection.json -k
+    -r cli,json
+    --reporter-json-export="reports/fastRestAPITests.json"
+  volumes:
+    - ./fastRest.QA.Tests/postman:/etc/newman
+  # networks:
+  #   - app_network
