@@ -248,7 +248,7 @@ The set contains the following groups:
 </tbody>
 </table></div>
 
-### The preparation for usage(to develop own application) of a starter:
+### The preparation for develop new application based on a starter:
 #### 1. Create a folder:
 ```bash
 
