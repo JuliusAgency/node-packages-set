@@ -273,7 +273,7 @@ npm run prepare
 ```
 Note: After the command is executed once, the Git hooks will run automatically before each commit and push.
 
-#### 2. Prepare to the usage of containerized data bases and it's UIs
+#### 2. Preparation for the usage of containerized databases and their UIs
 ```bash
 sudo apt  install docker-compose
 ```
