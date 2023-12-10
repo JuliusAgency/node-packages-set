@@ -273,23 +273,23 @@ npm run prepare
 ```
 Note: After the command is executed once, the Git hooks will run automatically before each commit and push.
 
-#### 2. Preparation for the usage of containerized databases and their UIs
+#### 5. Prepare for the usage of containerized databases and their UIs
 ```bash
 sudo apt  install docker-compose
 ```
-#### 3. Usage of the containerized data bases and it's UIs
+#### 6. Use of the containerized data bases and it's UIs
 [MongoDb](./docker-mongo/readme.md)   
 [PostgresSql](./docker-pgsql/readme.md)   
 
-#### 4. Run the starter 
+#### 7. Run the starter 
 ```bash
 cd ..
 npm run dev
 ```
-#### 5. Run the sanity test suit
+#### 8. Run the sanity test suit
 ```bash
 ```
-### Develope your own application
+### The new application development 
 #### 1. Extend the User model/entity 
 #### 2. Create new domain(s) folder(s) under the app folder  
 #### 3. Write code
