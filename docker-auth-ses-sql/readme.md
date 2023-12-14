@@ -1,7 +1,8 @@
-#### Install postgres and pgAdmin containers
+#### Install postgres pgadmin and node-starter-with-auth-ses-sql containers
 ```bash
 sudo docker pull postgres:latest  
 sudo docker pull dpage/pgadmin4  
+
 ```
 
 #### Connect to the pgAdmin from a browser:
@@ -12,18 +13,28 @@ pgadmin4@pgadmin.org
 admin  
 
 #### Configure web pgAdmin (during the first run)  
-server name:        pgsql-dev  
+server name:        pgsql-dev-ses-sql  
 
-host name/address:  172.21.0.2  
+host name/address:  IPAddress 
 port:               5432  
 maintenance database: postgres  
 username:           postgres  
 password:           test1234
 
 Note:  
-Address "IPAddress":"172.21.0.2" from:  
-sudo docker inspect pgsql-dev -f "{{json .NetworkSettings.Networks }}"  
+IPAddress from the output of the command:  
+```bash
+sudo docker inspect pgsql-dev-ses-sql  -f "{{json .NetworkSettings.Networks }}"  
+```
 
 #### Start/stop the Db and UI from the directory where the docker-compose.yml is located:
+```bash
 sudo docker-compose up -d  
 sudo docker-compose stop  
+```
+
+#### Get IP address for connection to the API outside of the auth-ses-sql-starter container:
+```bash
+sudo docker network inspect docker-auth-ses-sql_local
+```
+

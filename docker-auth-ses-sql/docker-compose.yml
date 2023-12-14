@@ -2,12 +2,12 @@ version: "3"
 services:
   pgsql:
     image: postgres:latest
-    container_name: pgsql-dev
+    container_name: pgsql-dev-ses-sql
     restart: unless-stopped
     ports:
       - "5454:5432"
     networks:
-      - postgres
+      - local
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -15,7 +15,7 @@ services:
     #   - local_pgdata:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin
+    container_name: pgadmin-ses-sql
     links:
       - pgsql
     depends_on:
@@ -24,15 +24,28 @@ services:
     ports:
       - "4001:80"
     networks:
-      - postgres
+      - local
     environment:
       PGADMIN_DEFAULT_EMAIL: ${UI_USER}
       PGADMIN_DEFAULT_PASSWORD: ${UI_PASSWORD}
     # volumes:
     #   - pgadmin-data:/var/lib/pgadmin
-
+  authsessql:
+    image: auth-ses-sql
+    container_name: auth-ses-sql-starter
+    links:
+      - pgsql
+    depends_on:
+      - pgsql
+    restart: unless-stopped
+    ports:
+      - "3005:3005"
+    environment:
+      - POSTGRES_URI=${POSTGRES_URI}
+    networks:
+      - local
 networks:
-  postgres:
+  local:
     driver: bridge
 
 # volumes:
