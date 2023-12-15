@@ -42,6 +42,7 @@ services:
       - "3005:3005"
     environment:
       - POSTGRES_URI=${POSTGRES_URI}
+      # - BACKEND_BASE_URL=${BACKEND_BASE_URL}
     networks:
       - local
 networks:

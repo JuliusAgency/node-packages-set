@@ -33,8 +33,11 @@ sudo docker-compose up -d
 sudo docker-compose stop  
 ```
 
-#### Get IP address for connection to the API outside of the auth-ses-sql-starter container:
+#### IP address for connection to the API outside of the auth-ses-sql-starter container:
 ```bash
+In the .env set
+BACKEND_BASE_URL=<starter-API-address>:3005
+Or get from
 sudo docker network inspect docker-auth-ses-sql_local
 ```
 
