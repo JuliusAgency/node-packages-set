@@ -41,3 +41,7 @@ Or get from
 sudo docker network inspect docker-auth-ses-sql_local
 ```
 
+#### Attach the console output to the container output:
+```bash
+sudo docker  logs -f -t auth-ses-sql-starter
+```

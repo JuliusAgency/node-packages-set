@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
   pgsql:
     image: postgres:latest
@@ -31,7 +31,7 @@ services:
     # volumes:
     #   - pgadmin-data:/var/lib/pgadmin
   authsessql:
-    image: auth-ses-sql
+    image: ghcr.io/juliusagency/node-starter-with-auth-ses-sql
     container_name: auth-ses-sql-starter
     links:
       - pgsql
@@ -39,10 +39,9 @@ services:
       - pgsql
     restart: unless-stopped
     ports:
-      - "3005:3005"
-    environment:
-      - POSTGRES_URI=${POSTGRES_URI}
-      # - BACKEND_BASE_URL=${BACKEND_BASE_URL}
+      - 3005:3005
+    env_file:
+      - .env_ns
     networks:
       - local
 networks:
