@@ -5,7 +5,7 @@ services:
     container_name: pgsql-dev
     restart: unless-stopped
     ports:
-      - "5454:5432"
+      - "5456:5432"
     networks:
       - postgres
     environment:

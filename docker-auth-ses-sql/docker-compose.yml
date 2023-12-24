@@ -1,51 +1,58 @@
+# The expose tag will let you expose ports without publishing them to the host machine, 
+# but they will be exposed to the containers networks.
+# https://docs.docker.com/compose/compose-file/#expose
+# The ports tag will be mapping the host port with the container port HOST:CONTAINER
+
 version: "3.8"
 services:
   pgsql:
     image: postgres:latest
-    container_name: pgsql-dev-ses-sql
-    restart: unless-stopped
-    ports:
-      - "5454:5432"
+    container_name: pgsql-ses-sql-${COMPOSE_PROJECT_NAME}
+    restart: always
     networks:
-      - local
+      - internal
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      # HOST-PORT:CONTAINER-PORT
+      - ${POSTGRES_PORT}:5432
     # volumes:
     #   - local_pgdata:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin-ses-sql
+    container_name: pgadmin-ses-sql-${COMPOSE_PROJECT_NAME}
     links:
       - pgsql
     depends_on:
       - pgsql
-    restart: unless-stopped
-    ports:
-      - "4001:80"
+    restart: always
     networks:
-      - local
+      - internal
     environment:
       PGADMIN_DEFAULT_EMAIL: ${UI_USER}
       PGADMIN_DEFAULT_PASSWORD: ${UI_PASSWORD}
+    ports:
+      - ${EXTERNAL_ADMIN_PORT}:80
     # volumes:
     #   - pgadmin-data:/var/lib/pgadmin
   authsessql:
     image: ghcr.io/juliusagency/node-starter-with-auth-ses-sql
-    container_name: auth-ses-sql-starter
+    container_name: auth-ses-sql-starter-${COMPOSE_PROJECT_NAME}
     links:
       - pgsql
     depends_on:
       - pgsql
-    restart: unless-stopped
-    ports:
-      - 3005:3005
+    restart: always
     env_file:
-      - .env_ns
+      - .env
+    ports:
+      # HOST-PORT:CONTAINER-PORT
+      - ${EXTERNAL_PORT}:${PORT}
     networks:
-      - local
+      - internal
 networks:
-  local:
+  internal:
     driver: bridge
 
 # volumes:
