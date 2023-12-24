@@ -6,7 +6,7 @@ sudo docker pull dpage/pgadmin4
 ```
 
 #### Connect to the pgAdmin from a browser:
-http://localhost:4001  
+http://localhost:<EXTERNAL_ADMIN_PORT>
 
 #### Login to the UI
 pgadmin4@pgadmin.org  
@@ -22,26 +22,18 @@ username:           postgres
 password:           test1234
 
 Note:  
-IPAddress from the output of the command:  
+IPAddress from the output of the command (after docker compose start):  
 ```bash
-sudo docker inspect pgsql-dev-ses-sql  -f "{{json .NetworkSettings.Networks }}"  
+sudo docker inspect pgsql-ses-sql-${USER}  -f "{{json .NetworkSettings.Networks }}"  
 ```
 
 #### Start/stop the Db and UI from the directory where the docker-compose.yml is located:
 ```bash
-sudo docker-compose up -d  
-sudo docker-compose stop  
-```
-
-#### IP address for connection to the API outside of the auth-ses-sql-starter container:
-```bash
-In the .env set
-BACKEND_BASE_URL=<starter-API-address>:3005
-Or get from
-sudo docker network inspect docker-auth-ses-sql_local
+sudo  docker compose -p ${USER} up -d  
+sudo  docker compose -p ${USER} stop  
 ```
 
 #### Attach the console output to the container output:
 ```bash
-sudo docker  logs -f -t auth-ses-sql-starter
+sudo docker logs -f -t auth-ses-sql-starter-${USER}
 ```
