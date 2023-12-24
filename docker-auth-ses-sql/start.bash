@@ -6,6 +6,6 @@ echo $1
 
 docker compose -p ${USER} up -d
 
-if [ $1 = log ] ; then
+if [ "$1" = log ] ; then
     docker logs -f -t auth-ses-sql-starter-${USER}
 fi

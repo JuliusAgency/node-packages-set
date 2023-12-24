@@ -2,4 +2,11 @@
 
 echo "Today is " `date`
 
-docker compose -p ${USER} stop
+echo $1
+
+if [ "$1" = down ] 
+then
+    docker compose -p ${USER} down
+else
+    docker compose -p ${USER} stop
+fi
