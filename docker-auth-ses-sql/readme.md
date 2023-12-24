@@ -13,8 +13,10 @@ pgadmin4@pgadmin.org
 admin  
 
 #### Configure web pgAdmin (during the first run)  
+The General Tab:
 server name:        pgsql-dev-ses-sql  
 
+The Connection Tab:
 host name/address:  IPAddress 
 port:               5432  
 maintenance database: postgres  
@@ -22,18 +24,32 @@ username:           postgres
 password:           test1234
 
 Note:  
-IPAddress from the output of the command (after docker compose start):  
+IPAddress from the output of the command (after the docker compose started):  
 ```bash
-sudo docker inspect pgsql-ses-sql-${USER}  -f "{{json .NetworkSettings.Networks }}"  
+docker inspect pgsql-ses-sql-${USER}  -f "{{json .NetworkSettings.Networks }}"  
 ```
 
-#### Start/stop the Db and UI from the directory where the docker-compose.yml is located:
+#### Start/stop the Db, UI and app from cmd
 ```bash
-sudo  docker compose -p ${USER} up -d  
-sudo  docker compose -p ${USER} stop  
+cd docker-auth-sws-sql
+docker compose -p ${USER} up -d  
+docker compose -p ${USER} stop  
 ```
 
 #### Attach the console output to the container output:
 ```bash
-sudo docker logs -f -t auth-ses-sql-starter-${USER}
+docker logs -f -t auth-ses-sql-starter-${USER}
 ```
+
+#### Start/stop the Db, UI and app via scripts
+```bash
+cd docker-auth-sws-sql
+./start.bash [log]
+./stop.bash [down]
+```
+Notes:
+    - start:
+        when the parameter 'log' passed, the console output will be attached;
+        press CTRL+C for stop the console output;
+    - stop:
+        when the parameter 'down' passed, the Db will be cleaned;
