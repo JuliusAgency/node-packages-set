@@ -1,7 +1,8 @@
-#### Install postgres pgadmin and node-starter-with-auth-ses-sql containers
+#### Download docker images
 ```bash
-sudo docker pull postgres:latest  
-sudo docker pull dpage/pgadmin4  
+docker pull postgres:latest  
+docker pull dpage/pgadmin4  
+docker pull ghcr.io/juliusagency/node-starter-with-auth-ses-sql
 
 ```
 
@@ -41,7 +42,7 @@ docker compose -p ${USER} stop
 docker logs -f -t auth-ses-sql-starter-${USER}
 ```
 
-#### Start/stop the Db, UI and app via scripts
+#### Start/stop the Db, UI and app images via scripts
 ```bash
 cd docker-auth-sws-sql
 ./start.bash [log]
@@ -49,7 +50,7 @@ cd docker-auth-sws-sql
 ```
 Notes:
     - start:
-        when the parameter 'log' passed, the console output will be attached;
-        press CTRL+C for stop the console output;
+        when the parameter 'log' passed, the console output will be attached;  
+        press CTRL+C for stop the console output;   
     - stop:
-        when the parameter 'down' passed, the Db will be cleaned;
+        when the parameter 'down' passed, the containers will be removed;   

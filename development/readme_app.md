@@ -29,9 +29,9 @@ Note: After the command is executed once, the Git hooks will run automatically b
 ```bash
 sudo apt  install docker-compose
 ```
-#### 6. Use of the containerized data bases and it's UIs
-[MongoDb](./docker-mongo/readme.md)   
-[PostgresSql](./docker-pgsql/readme.md)   
+#### 6. Use of the containerized data base and it's UI
+[MongoDb](../docker-mongo/readme.md)   
+[PostgresSql](../docker-pgsql/readme.md)   
 
 #### 7. Run the starter 
 ```bash

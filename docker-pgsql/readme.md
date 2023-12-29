@@ -1,7 +1,7 @@
-#### Install postgres and pgAdmin containers
+#### Download postgres and pgAdmin docker images
 ```bash
-sudo docker pull postgres:latest  
-sudo docker pull dpage/pgadmin4  
+docker pull postgres:latest  
+docker pull dpage/pgadmin4  
 ```
 
 #### Connect to the pgAdmin from a browser:
@@ -22,8 +22,8 @@ password:           test1234
 
 Note:  
 Address "IPAddress":"172.21.0.2" from:  
-sudo docker inspect pgsql-dev -f "{{json .NetworkSettings.Networks }}"  
+docker inspect pgsql-dev -f "{{json .NetworkSettings.Networks }}"  
 
-#### Start/stop the Db and UI from the directory where the docker-compose.yml is located:
-sudo docker-compose up -d  
-sudo docker-compose stop  
+#### Start/stop the Db and UI from the directory:
+docker-compose up -d  
+docker-compose stop  
