@@ -1,3 +1,4 @@
+docker-pgsql/.env
 docker-auth-ses-sql/.env
 docker-auth-ses-mongo/.env
 docker-auth-jwt-sql/.env

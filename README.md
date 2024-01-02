@@ -104,7 +104,7 @@ The set contains the following groups:
 
 ####   2. Public - sets of combinations of private packages are dedicated to be used in applications directly.  
 #### Each of these packages is specialized for working with certain databases and flows.  
-#### [Authentication](./diagram/authentication.png)  
+#### [Authentication sets](./diagram/authentication.png)  
 
 <div class="tg-wrap"><table>
 <thead>
