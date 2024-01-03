@@ -3,21 +3,30 @@ services:
   mongo:
     image: "mongo:latest"
     container_name: mongo-dev
-    ports:
-      - "27017:27017"
+    restart: unless-stopped
+    networks:
+      - mongo
     environment:
       MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    ports:
+      - ${EXTERNAL_MONGO_PORT}:${MONGO_PORT}
   mongo-express:
     image: "mongo-express:latest"
     container_name: mongo-express
     depends_on:
       - mongo
-    ports:
-      - "8081:8081"
+    restart: unless-stopped
+    networks:
+      - mongo
     environment:
       ME_CONFIG_OPTIONS_EDITORTHEME: default
       ME_CONFIG_BASICAUTH_USERNAME: ${MONGOEXPRESS_USER}
       ME_CONFIG_BASICAUTH_PASSWORD: ${MONGOEXPRESS_PASSWORD}     
       ME_CONFIG_MONGODB_SERVER: mongo
-      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_PORT: ${MONGO_PORT}
+    ports:
+      - ${EXTERNAL_EXPRESS_PORT}:8081
+networks:
+  mongo:
+    driver: bridge
     
