@@ -1,9 +1,5 @@
 {
 	"info": {
-		"_postman_id": "ac3af17d-447a-4a28-a4ec-bbb896dbfe83",
-		"name": "Logout",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30004978"
 	},
 	"item": [
 		{
@@ -25,12 +21,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/{{auth}}/logout",
+					"raw": "{{auth_url}}/logout",
 					"host": [
-						"{{base_url}}"
+						"{{auth_url}}"
 					],
 					"path": [
-						"{{auth}}",
 						"logout"
 					]
 				}
@@ -60,12 +55,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/examples/first",
+					"raw": "{{examp_url}}/first",
 					"host": [
-						"{{base_url}}"
+						"{{examp_url}}"
 					],
 					"path": [
-						"examples",
 						"first"
 					]
 				}
@@ -91,18 +85,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "base_url",
-			"value": "http://127.0.0.1:3006",
-			"type": "string"
-		},
-		{
-			"key": "auth",
-			"value": "auth",
-			"type": "string"
 		}
 	]
 }

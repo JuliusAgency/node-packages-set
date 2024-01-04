@@ -13,14 +13,28 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
+							"// pm.test(\"Status code is 200\", function () {",
+							"//     pm.response.to.have.status(200);",
+							"// });",
+							"",
+							"// pm.test(\"User already exist\", function () {",
+							"//     var jsonData = pm.response.json();",
+							"//     pm.expect(jsonData.message).not.to.eql(\"User already exist\");",
+							"// });",
+							"",
+							"pm.test(\"register\", () => {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"    // if (responseJson._id != undefined) {",
+							"    //     pm.expect(responseJson._id).to.have.lengthOf(36);",
+							"    // };",
+							"    if (responseJson.message != undefined && ",
+							"        responseJson.message === \"User already exist\") {",
+							"        pm.expect.fail(\"User already exists\");",
+							"    };",
 							"});",
 							"",
-							"// var responseInJason = pm.response.json();",
-							"",
-							"// pm.collectionVariables.set(\"user_email\", responseInJason.email);",
-							"// pm.collectionVariables.set(\"user_password\", responseInJason.password);"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -31,7 +45,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}",
+					"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}\n\n// {\n//     \"name\": \"user5\",\n//     \"email\": \"user5@gmail.com\",\n//     \"password\": \"444444\",\n//     \"role\": \"guest\"\n// }\n\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -39,12 +53,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/{{auth}}/register",
+					"raw": "{{auth_url}}/register",
 					"host": [
-						"{{base_url}}"
+						"{{auth_url}}"
 					],
 					"path": [
-						"{{auth}}",
 						"register"
 					]
 				}
@@ -71,7 +84,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+					"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user2@gmail.com\",\n//     \"password\": \"222222\"\n// }\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,12 +92,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/{{auth}}/login",
+					"raw": "{{auth_url}}/login",
 					"host": [
-						"{{base_url}}"
+						"{{auth_url}}"
 					],
 					"path": [
-						"{{auth}}",
 						"login"
 					]
 				}
@@ -102,10 +114,6 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"// pm.test(\"User authorized\", function () {",
-							"//     pm.response.to.have.body(\"You have reached the first protected route\");",
-							"// });",
-							"",
 							"pm.test(\"User authorized\", function () {",
 							"    pm.expect(pm.response.text()).to.include(\"You have reached the first protected route\");",
 							"});"
@@ -118,12 +126,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/examples/first",
+					"raw": "{{examp_url}}/first",
 					"host": [
-						"{{base_url}}"
+						"{{examp_url}}"
 					],
 					"path": [
-						"examples",
 						"first"
 					]
 				}
@@ -149,26 +156,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "base_url",
-			"value": "http://127.0.0.1:3006",
-			"type": "string"
-		},
-		{
-			"key": "auth",
-			"value": "auth",
-			"type": "string"
-		},
-		{
-			"key": "user_email",
-			"value": ""
-		},
-		{
-			"key": "user_password",
-			"value": ""
 		}
 	]
 }

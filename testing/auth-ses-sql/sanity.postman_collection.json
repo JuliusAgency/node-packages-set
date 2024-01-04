@@ -1,9 +1,5 @@
 {
 	"info": {
-		"_postman_id": "063d4f42-025d-4b45-abcb-98f42babd2ca",
-		"name": "Sanity",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30004978"
 	},
 	"item": [
 		{
@@ -37,12 +33,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/{{auth}}",
+					"raw": "{{auth_url}}",
 					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"{{auth}}"
+						"{{auth_url}}"
 					]
 				}
 			},
@@ -71,12 +64,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/examples/first",
+					"raw": "{{examp_url}}/first",
 					"host": [
-						"{{base_url}}"
+						"{{examp_url}}"
 					],
 					"path": [
-						"examples",
 						"first"
 					]
 				}
@@ -102,18 +94,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "base_url",
-			"value": "http://127.0.0.1:3006",
-			"type": "string"
-		},
-		{
-			"key": "auth",
-			"value": "auth",
-			"type": "string"
 		}
 	]
 }
