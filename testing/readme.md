@@ -4,7 +4,7 @@ docker run --rm --network host -v "$PWD/../../tests":/usr/src/app -w /usr/src/ap
     or:  
 docker run \  
 	--rm   
-    --network host \  
+	--network host \  
 	-v "$PWD/../../tests":/usr/src/app \  
 	-w /usr/src/app \  
 	-t \  
