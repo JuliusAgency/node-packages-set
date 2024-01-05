@@ -32,7 +32,7 @@ docker run \
         # -r cli,json \
         # --reporter-json-export="./results.json"
 
-# echo "Run register collection"
+echo "Run register collection"
 docker run \
     --rm \
     --network host \
@@ -46,8 +46,16 @@ docker run \
         # -r cli,json \
         # --reporter-json-export="./results.json"
 
-# echo "Run logout collection"
-# docker run --rm --network host -v "$PWD":/usr/src/app -w /usr/src/app -t postman/newman run logout.postman_collection.json -e auth-ses-sql.postman_environment.json
+echo "Run logout collection"
+docker run \
+    --rm \
+    --network host \
+    -v "$PWD":/usr/src/app \
+    -w /usr/src/app \
+    -t \
+    postman/newman run \
+        logout.postman_collection.json \
+        -e auth-ses-sql.postman_environment.json
 
 cd $dockerdir
 echo stop from directory $PWD
