@@ -4,10 +4,15 @@ services:
     image: postman/newman:alpine
     container_name: postmanTests
     command:
-      run FastRestAPITests.postman_collection.json -k
-      -r cli,json
-      --reporter-json-export="reports/fastRestAPITests.json"
+      run ses-sql-docker-brief.postman_collection.json 
+      -e ses-sql-docker-brief.postman_environment.json
+      -k
+      -r cli,json      
+      --reporter-json-export="results.json"
     volumes:
-      - ./fastRest.QA.Tests/postman:/etc/newman
-    # networks:
-    #   - app_network
+      - ../testing/ses-sql:/etc/newman
+    networks:
+      - internal
+networks:
+  internal:
+    driver: bridge
