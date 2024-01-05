@@ -12,50 +12,15 @@ echo start from directory $PWD
 cd $testdir
 echo test from directory $PWD
 
-# for filename in ./*postman_collection.json; do
-#     [ -e "$filename" ] || continue
-#     echo run collection from $filename
-#     docker run --rm --network host -v "$PWD":/usr/src/app -w /usr/src/app -t postman/newman run $filename -e auth-ses-sql.postman_environment.json
-# done
+collections_file=$1
 
-echo "Run sanity collection"
-docker run \
-    --rm \
-    --network host \
-    -v "$PWD":/usr/src/app \
-    -w /usr/src/app \
-    -t \
-    postman/newman run \
-        sanity.postman_collection.json \
-        -e auth-ses-sql.postman_environment.json
-        #  \
-        # -r cli,json \
-        # --reporter-json-export="./results.json"
+collections=(`cat $collections_file`)
 
-echo "Run register collection"
-docker run \
-    --rm \
-    --network host \
-    -v "$PWD":/usr/src/app \
-    -w /usr/src/app \
-    -t \
-    postman/newman run \
-        register.postman_collection.json \
-        -e auth-ses-sql.postman_environment.json
-        #  \
-        # -r cli,json \
-        # --reporter-json-export="./results.json"
-
-echo "Run logout collection"
-docker run \
-    --rm \
-    --network host \
-    -v "$PWD":/usr/src/app \
-    -w /usr/src/app \
-    -t \
-    postman/newman run \
-        logout.postman_collection.json \
-        -e auth-ses-sql.postman_environment.json
+for collection in "${collections[@]}"
+do
+    echo $collection
+    source ../run_collection.bash "$collection"
+done
 
 cd $dockerdir
 echo stop from directory $PWD
