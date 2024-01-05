@@ -1,5 +1,2 @@
 name, email, password, role
-user2, user2@gmail.com, 222222, guest
-
-
-
+user1, user1@gmail.com, 111111, guest
