@@ -1,0 +1,37 @@
+01/01/2024
+
+reset-password
+
+request was sent to email karpovskaamarina@gmail.com, user7
+in response body retuned uncorrect user and email
+
+{
+    "params": {
+        "email": "user1@gmail.com",
+        "name": "user1"
+    },
+    "success": true
+}
+
+08/01/2024
+
+reset-password
+
+bug fixed
+
+request was sent to email karpovskaamarina@gmail.com, user3
+in response body retuned correct user and email
+
+{
+    "params": {
+        "email": "karpovskaamarina@gmail.com",
+        "name": "user3"
+    },
+    "success": true
+}
+
+08/01/2024
+
+login-non-existent-user
+
+Message text in response body with dot - "User not found."
