@@ -12,15 +12,11 @@ echo start from directory $PWD
 cd $testdir
 echo test from directory $PWD
 
-collections_file=$1
+collection="test-sanity.postman_collection.json"
+environment="auth-ses-sql.postman_environment.json"
+data=./test-data.csv
 
-collections=(`cat $collections_file`)
-
-for collection in "${collections[@]}"
-do
-    echo $collection
-    source ../run_collection.bash "$collection"
-done
+source ../run_collection.bash $collection $environment $data
 
 cd $dockerdir
 echo stop from directory $PWD

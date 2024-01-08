@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-echo run_collection from ===== $1
+echo run ===== $1 $2 $3
 
 docker run \
     --rm \
@@ -10,7 +10,8 @@ docker run \
     -t \
     postman/newman run \
         $1 \
-        -e auth-ses-sql.postman_environment.json
+        -e $2 \
+        -d $3
         #  \
         # -r cli,json \
         # --reporter-json-export="./results.json"
