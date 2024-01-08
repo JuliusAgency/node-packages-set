@@ -1,3 +1,0 @@
-sanity.postman_collection.json
-register.postman_collection.json
-logout.postman_collection.json
