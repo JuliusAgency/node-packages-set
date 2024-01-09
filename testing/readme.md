@@ -1,21 +1,43 @@
 ## How to test the starters
+
+### Test environment
+A starter that has to be tested is located in one of the folders:  
+    - docker-auth-jwt-mongo  
+    - docker-auth-jwt-sql  
+    - docker-auth-ses-mongo     
+    - docker-auth-ses-sql  
+The corresponding test is located in the "testing/subfolder".   
+Where the subfolder has the same name as the starter, without the "docker-" prefix i.e in one of:  
+    - auth-jwt-mongo  
+    - auth-jwt-sql  
+    - auth-ses-mongo     
+    - auth-ses-sql   
+
+All tests have to be performed from the "testing" folder.
+
+#### Testing
+Move to the testing folder:
 ```bash
-docker run --rm --network host -v "$PWD/../../tests":/usr/src/app -w /usr/src/app -t postman/newman run test.postman_collection.json  
-    or:  
-docker run \  
-	--rm   
-	--network host \  
-	-v "$PWD/../../tests":/usr/src/app \  
-	-w /usr/src/app \  
-	-t \  
-	postman/newman run test.postman_collection.json  
+cd testing
+```
+#### Manual testing
+Run starter that has to be tested: 
+```bash
+cd testing
+./start.bash <test-folder-name>
+```
+Perform manual tests
+
+Stop the starter:
+```bash
+./stop.bash <test-folder-name>
+```
+#### Auto testing
+
+```bash
+./test.bash <test-folder-name>
 ```
 
-Where:  
-<pre>
---rm                                Remove the container after end of tests  
---network host                      Map internal docker network to the localhost  
--v "$PWD/../../tests":/usr/src/app  Mount the directory with postman collection file (relative path from current directory) to docker / usr/src/app  
--w /usr/src/app                     Set working directory inside the container  
--t                                  Allocate a pseudo-TTY  
-</pre>
+
+
+

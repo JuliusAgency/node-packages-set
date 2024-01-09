@@ -242,7 +242,7 @@ The set contains the following groups:
     <td>04</td>
     <td> node-starter-with-auth-ses-mongo</td>
     <td><a href="https://github.com/JuliusAgency/node-starter-with-auth-ses-mongo">Link</a></td>
-    <td></td>
+    <td><a href="https://github.com/JuliusAgency/node-starter-with-auth-ses-mongo/pkgs/container/node-starter-with-auth-ses-mongo">Link</a></td>
     <td>Starter with session and MongoDb</td>
   </tr>
 </tbody>
