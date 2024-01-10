@@ -221,14 +221,14 @@ The set contains the following groups:
     <td>01</td>
     <td>node-starter-with-auth-jwt-sql</td>
     <td><a href="https://github.com/JuliusAgency/node-starter-with-auth-jwt-sql">Link</a></td>
-    <td></td>
+    <td><a href="https://github.com/JuliusAgency/node-starter-with-auth-jwt-sql/pkgs/container/node-starter-with-auth-jwt-sql">Link</a></td>
     <td>Starter with JWT and Sql Db</td>
   </tr>
   <tr>
     <td>02</td>
     <td> node-starter-with-auth-jwt-mongo</td>
     <td><a href="https://github.com/JuliusAgency/node-starter-with-auth-jwt-mongo">Link</a></td>
-    <td></td>
+    <td><a href="https://github.com/JuliusAgency/node-starter-with-auth-ses-mongo/pkgs/container/node-starter-with-auth-jwt-mongo">Link</a></td>
     <td>Starter with JWT and MongoDb</td>
   </tr>
   <tr>

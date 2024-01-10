@@ -1,0 +1,57 @@
+# The expose tag will let you expose ports without publishing them to the host machine, 
+# but they will be exposed to the containers networks.
+# https://docs.docker.com/compose/compose-file/#expose
+# The ports tag will be mapping the host port with the container port HOST:CONTAINER
+
+version: "3.8"
+services:
+  mongo:
+    image: "mongo:latest"
+    container_name: mongo-jwt-mongo-${COMPOSE_PROJECT_NAME}
+    restart: unless-stopped
+    networks:
+      - internal
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+      # - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      # - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+    ports:
+      - ${EXTERNAL_MONGO_PORT}:${MONGO_PORT}
+  mongo-express:
+    image: "mongo-express:latest"
+    container_name: mongo-express-jwt-mongo-${COMPOSE_PROJECT_NAME}
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    networks:
+      - internal
+    environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME=default
+      - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRESS_USER}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRESS_PASSWORD}     
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=${MONGO_PORT}
+    ports:
+      - ${EXTERNAL_EXPRESS_PORT}:8081
+  authsesmongo:
+    image: ghcr.io/juliusagency/node-starter-with-auth-jwt-mongo
+    container_name: auth-jwt-mongo-starter-${COMPOSE_PROJECT_NAME}
+    depends_on:
+      - mongo
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      # HOST-PORT:CONTAINER-PORT
+      - ${EXTERNAL_PORT}:${PORT}
+    stdin_open: true
+    tty: true
+    networks:
+      - internal
+networks:
+  internal:
+    driver: bridge
+
+# volumes:
+#   local_pgdata:
+#   pgadmin-data:
