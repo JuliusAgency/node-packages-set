@@ -8,6 +8,7 @@ docker pull ghcr.io/juliusagency/node-starter-with-auth-jwt-mongo
 #### Connect to the mongo-express UI from a browser:
 http://localhost:8084
 
+
 #### Start/stop the Db, UI and app from cmd
 ```bash
 cd docker-auth-jwt-mongo
