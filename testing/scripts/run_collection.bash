@@ -16,7 +16,8 @@ docker run \
     postman/newman run \
         $1 \
         -e $2 \
-        -d $3
+        -d $3 \
+        --delay-request 1000
         #  \
         # -r cli,json \
         # --reporter-json-export="./results.json"
