@@ -1,6 +1,9 @@
 {
 	"info": {
-		
+		"_postman_id": "d604dd65-5aee-4382-8122-fcd8fe1cb8b9",
+		"name": "Test Sanity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30004978"
 	},
 	"item": [
 		{
@@ -164,7 +167,53 @@
 									"    };",
 									"});",
 									"",
-									""
+									"pm.test(\"user name from request and response MATCH\", () => {",
+									"    const responseInJson = pm.response.json();",
+									"    const user_name = responseInJson.name;",
+									"    const myRequest = JSON.parse(pm.request.body.raw);",
+									"    const user_name_request = myRequest.name;",
+									"    pm.expect(user_name).to.eql(user_name_request);    ",
+									"    if (user_name != user_name_request){",
+									"        pm.expect.fail(\"user name from request and response DONT MATCH\");",
+									"    };",
+									"});",
+									"",
+									"pm.test(\"user email from request and response MATCH\", () => {",
+									"    const responseInJson = pm.response.json();",
+									"    const user_email = responseInJson.email;",
+									"    const myRequest = JSON.parse(pm.request.body.raw);",
+									"    const user_email_request = myRequest.email;",
+									"    pm.expect(user_email).to.eql(user_email_request);    ",
+									"    if (user_email != user_email_request){",
+									"        pm.expect.fail(\"user email from request and response DONT MATCH\");",
+									"    };",
+									"});",
+									"",
+									"//     const responseInJson = pm.response.json();",
+									"//     const user_name = responseInJson.name;",
+									"//     console.log(user_name);",
+									"// // console.log(JSON.stringify(user_name));",
+									"",
+									"//     const myRequest = JSON.parse(pm.request.body.raw);",
+									"//     const user_name_request = myRequest.name;",
+									"// // console.log(JSON.stringify(user_name_request));",
+									"//     console.log(user_name_request);",
+									"",
+									"",
+									"// // const myRequest = pm.request.toJSON().body.raw;",
+									"// // const user_name_request = myRequest.name;",
+									"// // console.log(myRequest.name);",
+									"",
+									"",
+									"// // if (user_name_request === JSON.stringify(user_name)){",
+									" ",
+									"//     if (user_name_request === user_name){",
+									"",
+									"//     console.log(\"Request and Response MATCH\");",
+									"// }",
+									"//     else{",
+									"//     console.log(\"Request and Response DONT MATCH\");",
+									"// }"
 								],
 								"type": "text/javascript"
 							}
@@ -175,7 +224,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}\n\n// {\n//     \"name\": \"user1\",\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"role\": \"guest\"\n// }\n\n",
+							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}\n\n// {\n//     \"name\": \"user3\",\n//     \"email\": \"user3@gmail.com\",\n//     \"password\": \"333333\",\n//     \"role\": \"user\"\n// }\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -586,42 +635,6 @@
 							],
 							"path": [
 								"change-password"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "first",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});",
-									"",
-									"pm.test(\"User unauthorized\", function () {",
-									"    pm.response.to.have.body(\"Unauthorized\");",
-									"});",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{examp_url}}/first",
-							"host": [
-								"{{examp_url}}"
-							],
-							"path": [
-								"first"
 							]
 						}
 					},
