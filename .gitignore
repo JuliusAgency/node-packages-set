@@ -4,3 +4,4 @@ docker-auth-ses-sql/.env
 docker-auth-ses-mongo/.env
 docker-auth-jwt-sql/.env
 docker-auth-jwt-mongo/.env
+testing/reports/
