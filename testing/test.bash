@@ -13,4 +13,6 @@ source ./scripts/run_starter.bash $test_folder $docker_folder
 source ./scripts/run_test.bash
 
 source ./scripts/stop_starter.bash $test_folder $docker_folder
+
+source ./scripts/show_report.bash $1
 exit 0
