@@ -25,11 +25,18 @@ npm run prepare
 ```
 Note: After the command is executed once, the Git hooks will run automatically before each commit and push.
 
-#### 5. Prepare for the usage of containerized databases and their UIs
+#### 5. Prepare for the usage of containerized databases and their UIs   
 ```bash
-sudo apt  install docker-compose
+sudo apt install docker-compose
 ```
-#### 6. Use of the containerized data base and it's UI
+#### 6. Use of the containerized data base and it's UI (from the node-packages-set)  
+from the development folder:
+```bash
+cd development  
+./start.bash docker-pgsql[docker mongo]  
+./stop.bash docker-pgsql[docker mongo] down  
+```
+from one of the docker-pgsql[docker mongo] folders:  
 [MongoDb](../docker-mongo/readme.md)   
 [PostgresSql](../docker-pgsql/readme.md)   
 

@@ -6,7 +6,7 @@ echo $1
 
 if [ "$1" = down ] 
 then
-    docker compose -p ${USER} down
+    docker-compose -p ${USER} down -v
 else
-    docker compose -p ${USER} stop
+    docker-compose -p ${USER} stop
 fi

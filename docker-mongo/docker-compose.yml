@@ -2,7 +2,7 @@ version: "3.8"
 services:
   mongo:
     image: "mongo:latest"
-    container_name: mongo-dev
+    container_name: mongo-dev-${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
     networks:
       - mongo
@@ -12,7 +12,7 @@ services:
       - ${EXTERNAL_MONGO_PORT}:${MONGO_PORT}
   mongo-express:
     image: "mongo-express:latest"
-    container_name: mongo-express
+    container_name: mongo-express-mongo-dev-${COMPOSE_PROJECT_NAME}
     depends_on:
       - mongo
     restart: unless-stopped
