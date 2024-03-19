@@ -25,5 +25,5 @@ Address "IPAddress":"172.21.0.2" from:
 docker inspect pgsql-dev -f "{{json .NetworkSettings.Networks }}"  
 
 #### Start/stop the Db and UI from the directory:
-docker-compose up -d  
-docker-compose stop  
+docker compose up -d  
+docker compose stop  

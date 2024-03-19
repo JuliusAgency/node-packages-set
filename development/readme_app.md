@@ -27,7 +27,7 @@ Note: After the command is executed once, the Git hooks will run automatically b
 
 #### 5. Prepare for the usage of containerized databases and their UIs   
 ```bash
-sudo apt install docker-compose
+sudo apt install docker compose
 ```
 #### 6. Use of the containerized data base and it's UI (from the node-packages-set)  
 from the development folder:

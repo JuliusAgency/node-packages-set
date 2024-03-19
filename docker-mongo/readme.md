@@ -1,4 +1,4 @@
-[Mongo with docker](https://blog.tericcabrel.com/using-docker-and-docker-compose-with-nodejs-and-mongodb/)  
+[Mongo with docker](https://blog.tericcabrel.com/using-docker-and-docker compose-with-nodejs-and-mongodb/)  
 [Mongo-express with docker](https://devops.tutorials24x7.com/blog/containerize-mongodb-and-mongo-express-using-docker-containers)  
 
 #### Download mongo and mongo-express docker images
@@ -12,6 +12,6 @@ http://localhost:8081
 
 #### Start/stop the Db and UI from the directory:
 ```bash
-docker-compose up -d  
-docker-compose stop  
+docker compose up -d  
+docker compose stop  
 ```
