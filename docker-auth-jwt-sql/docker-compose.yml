@@ -37,7 +37,8 @@ services:
     # volumes:
     #   - pgadmin-data:/var/lib/pgadmin
   authsessql:
-    image: ghcr.io/juliusagency/node-starter-with-auth-jwt-sql
+   # image: ghcr.io/juliusagency/node-starter-with-auth-jwt-sql
+    image: ghcr.io/juliusagency/node-starter-with-auth-jwt-sql-${IMAGE_ARCH}:${IMAGE_VER}
     container_name: auth-jwt-sql-starter-${COMPOSE_PROJECT_NAME}
     links:
       - pgsql

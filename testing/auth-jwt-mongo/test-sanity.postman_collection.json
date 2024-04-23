@@ -60,6 +60,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"var jsonData = pm.response.json();",
+									"var token = jsonData.token;",
+									"",
+									"pm.environment.set(\"xjwttoken\", token);",
+									"",
+									"",
 									"pm.test(\"User not found, code is 404\", function () {",
 									"    pm.response.to.have.status(404);",
 									"",
@@ -72,7 +78,8 @@
 									"",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -81,7 +88,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\"\n// }\n\n{\n    \"email\": \"user1@gmail.com\",\n    \"password\": \"111111\"\n}\n",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -113,16 +120,23 @@
 									"",
 									"pm.test(\"User unauthorized\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
+									"    pm.expect(jsonData.message).to.eql(\"Failed to decode or validate authorization token. Reason: invalid-token.\");",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-JWT-Token",
+								"value": "{{xjwttoken}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{examp_url}}/first",
 							"host": [
@@ -216,7 +230,8 @@
 									"//     console.log(\"Request and Response DONT MATCH\");",
 									"// }"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -225,7 +240,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}\n\n// {\n//     \"name\": \"user1\",\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"role\": \"user\"\n// }\n\n",
+							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}\n\n// {\n//     \"name\": \"guest1\",\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"11221111\",\n//     \"role\": \"guest\"\n// }\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -261,16 +276,23 @@
 									"",
 									"pm.test(\"User unauthorized\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
+									"    pm.expect(jsonData.message).to.eql(\"Failed to decode or validate authorization token. Reason: invalid-token.\");",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-JWT-Token",
+								"value": "{{xjwttoken}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{examp_url}}/first",
 							"host": [
@@ -295,6 +317,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"var jsonData = pm.response.json();",
+									"var token = jsonData.token;",
+									"",
+									"pm.environment.set(\"xjwttoken\", token);",
+									"",
+									"",
+									"",
+									"",
 									"pm.test(\"User not found, code is 404\", function () {",
 									"    pm.response.to.have.status(404);",
 									"",
@@ -306,13 +336,20 @@
 									"",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-JWT-Token",
+								"value": "{{xjwttoken}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"email\": \"user{{$randomInt}}@gmail.com\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user{{$randomInt}}@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
@@ -347,16 +384,23 @@
 									"",
 									"pm.test(\"User unauthorized\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
+									"    pm.expect(jsonData.message).to.eql(\"Failed to decode or validate authorization token. Reason: invalid-token.\");",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-JWT-Token",
+								"value": "{{xjwttoken}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{examp_url}}/first",
 							"host": [
@@ -381,6 +425,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"var jsonData = pm.response.json();",
+									"var token = jsonData.token;",
+									"",
+									"pm.environment.set(\"xjwttoken\", token);",
+									"",
+									"",
+									"",
+									"",
 									"pm.test(\"User or password incorrect, code is 404\", function () {",
 									"    pm.response.to.have.status(404);",
 									"",
@@ -392,16 +444,23 @@
 									"",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-JWT-Token",
+								"value": "{{xjwttoken}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{$randomInt}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"{{$randomInt}}\"\n// }\n",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{$randomInt}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"{{$randomInt}}\"\n// }\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"{{$randomInt}}\"\n// }\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -433,16 +492,23 @@
 									"",
 									"pm.test(\"User unauthorized\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
+									"    pm.expect(jsonData.message).to.eql(\"Failed to decode or validate authorization token. Reason: invalid-token.\")",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-JWT-Token",
+								"value": "{{xjwttoken}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{examp_url}}/first",
 							"host": [
@@ -467,26 +533,39 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"var jsonData = pm.response.json();",
+									"var token = jsonData.token;",
+									"",
+									"pm.environment.set(\"xjwttoken\", token);",
+									"",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"var responseInJson = pm.response.json();",
+									"// var responseInJson = pm.response.json();",
 									"",
-									"pm.collectionVariables.set(\"token\", responseInJson.token);",
+									"// pm.collectionVariables.set(\"token\", responseInJson.token);",
 									"",
-									"//console.log(\"token: \" + pm.collectionVariables.get(\"token\"));"
+									"// //console.log(\"token: \" + pm.collectionVariables.get(\"token\"));"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-JWT-Token",
+								"value": "{{xjwttoken}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"11221111\"\n// }\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -520,7 +599,8 @@
 									"    pm.expect(pm.response.text()).to.include(\"You have reached the first protected route\");",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -529,7 +609,7 @@
 						"header": [
 							{
 								"key": "X-JWT-Token",
-								"value": "{{token}}",
+								"value": "{{xjwttoken}}",
 								"type": "text"
 							}
 						],
@@ -561,7 +641,8 @@
 									"    pm.response.to.have.status(200);",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -570,7 +651,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordNew\":\"{{passwordNew}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"passwordNew\":\"222222\"\n// }",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordNew\":\"{{passwordNew}}\"\n}\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"444444\",\n//     \"passwordNew\":\"55555\"\n// }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -636,6 +717,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"var jsonData = pm.response.json();",
+									"var token = jsonData.token;",
+									"",
+									"pm.environment.set(\"xjwttoken\", token);",
+									"",
 									"pm.test(\"Login with old password\", function () {",
 									"    pm.response.to.have.status(404);",
 									"});",
@@ -647,7 +733,8 @@
 									"",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -656,7 +743,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"11221111\"\n// }\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -723,17 +810,19 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"var jsonData = pm.response.json();",
+									"var token = jsonData.token;",
+									"",
+									"pm.environment.set(\"xjwttoken\", token);",
+									"",
 									"pm.test(\"Login with new password\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"var responseInJson = pm.response.json();",
-									"",
-									"pm.collectionVariables.set(\"token\", responseInJson.token);",
-									"",
-									"// console.log(\"token: \" + pm.collectionVariables.get(\"token\"));"
+									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -742,7 +831,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{passwordNew}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"222222\"\n// }\n",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{passwordNew}}\"\n}\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"55555\"\n// }\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -778,7 +867,8 @@
 									"});",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -787,7 +877,7 @@
 						"header": [
 							{
 								"key": "X-JWT-Token",
-								"value": "{{token}}",
+								"value": "{{xjwttoken}}",
 								"type": "text"
 							}
 						],
@@ -806,10 +896,26 @@
 			]
 		}
 	],
-	"variable": [
+	"event": [
 		{
-			"key": "token",
-			"value": ""
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
