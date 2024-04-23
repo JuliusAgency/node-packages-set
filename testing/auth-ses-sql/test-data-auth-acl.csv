@@ -1,0 +1,4 @@
+rbac-acl, name, email, password, role
+test-acl, user1, user1@gmail.com, 111111, user
+test-acl, admin1, admin1@gmail.com, 111111, admin
+test-acl, guest1, guest1@gmail.com, 111111, guest

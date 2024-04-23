@@ -7,10 +7,9 @@ then
     folders=(`ls -d */`)
     echo "Where <test-folder-name> one from:"
     for folder in "${folders[@]}"; do
-        if [ "$folder" = "scripts/" ]; then
-            break
+        if [ "$folder" != "scripts/" ]; then
+	        [[ -d "$folder" ]] && echo "    ${folder%/}"
         fi    
-        [[ -d "$folder" ]] && echo "    ${folder%/}"
     done    
     exit 1
 fi
