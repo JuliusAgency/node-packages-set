@@ -34,7 +34,8 @@ services:
     ports:
       - ${EXTERNAL_EXPRESS_PORT}:8081
   authsesmongo:
-    image: ghcr.io/juliusagency/node-starter-with-auth-ses-mongo
+  #  image: ghcr.io/juliusagency/node-starter-with-auth-ses-mongo
+    image: ghcr.io/juliusagency/node-starter-with-auth-ses-mongo-${IMAGE_ARCH}:${IMAGE_VER}
     container_name: auth-ses-mongo-starter-${COMPOSE_PROJECT_NAME}
     depends_on:
       - mongo
