@@ -1,814 +1,305 @@
 {
 	"info": {
-		"_postman_id": "afa5261a-3cff-42bd-83a4-a735a66d8936",
-		"name": "Test Sanity jwt",
+		"_postman_id": "4b48539f-b2ff-435c-a5bc-69547681cae8",
+		"name": "Test Auth jwt",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30004978"
 	},
 	"item": [
 		{
-			"name": "ping",
-			"item": [
-				{
-					"name": "hello",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"user1\",\n    \"email\": \"user1@gmail.com\",\n    \"password\": \"111111\",\n    \"role\": \"user\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{auth_url}}",
-							"host": [
-								"{{auth_url}}"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "login-with-empty-users-db",
-			"item": [
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"User not found, code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
-									"",
-									"",
-									"    pm.test(\"User not found\", function () {",
-									"        var jsonData = pm.response.json();",
-									"        pm.expect(jsonData.message).to.eql(\"User not found.\");",
-									"    });",
-									"});",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\"\n// }\n\n{\n    \"email\": \"user1@gmail.com\",\n    \"password\": \"111111\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{auth_url}}/login",
-							"host": [
-								"{{auth_url}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "first",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});",
-									"",
-									"pm.test(\"User unauthorized\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{examp_url}}/first",
-							"host": [
-								"{{examp_url}}"
-							],
-							"path": [
-								"first"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "register",
-			"item": [
+			"event": [
 				{
-					"name": "register",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// pm.test(\"Status code is 200\", function () {",
-									"//     pm.response.to.have.status(200);",
-									"// });",
-									"",
-									"// pm.test(\"User already exist\", function () {",
-									"//     var jsonData = pm.response.json();",
-									"//     pm.expect(jsonData.message).not.to.eql(\"User already exist\");",
-									"// });",
-									"",
-									"pm.test(\"register\", () => {",
-									"    const responseJson = pm.response.json();",
-									"    pm.expect(pm.response.code).to.eql(200);",
-									"    // if (responseJson._id != undefined) {",
-									"    //     pm.expect(responseJson._id).to.have.lengthOf(36);",
-									"    // };",
-									"    if (responseJson.message != undefined && ",
-									"        responseJson.message === \"User already exist\") {",
-									"        pm.expect.fail(\"User already exists\");",
-									"    };",
-									"});",
-									"",
-									"pm.test(\"user name from request and response MATCH\", () => {",
-									"    const responseInJson = pm.response.json();",
-									"    const user_name = responseInJson.name;",
-									"    const myRequest = JSON.parse(pm.request.body.raw);",
-									"    const user_name_request = myRequest.name;",
-									"    pm.expect(user_name).to.eql(user_name_request);    ",
-									"    if (user_name != user_name_request){",
-									"        pm.expect.fail(\"user name from request and response DONT MATCH\");",
-									"    };",
-									"});",
-									"",
-									"pm.test(\"user email from request and response MATCH\", () => {",
-									"    const responseInJson = pm.response.json();",
-									"    const user_email = responseInJson.email;",
-									"    const myRequest = JSON.parse(pm.request.body.raw);",
-									"    const user_email_request = myRequest.email;",
-									"    pm.expect(user_email).to.eql(user_email_request);    ",
-									"    if (user_email != user_email_request){",
-									"        pm.expect.fail(\"user email from request and response DONT MATCH\");",
-									"    };",
-									"});",
-									"",
-									"//     const responseInJson = pm.response.json();",
-									"//     const user_name = responseInJson.name;",
-									"//     console.log(user_name);",
-									"// // console.log(JSON.stringify(user_name));",
-									"",
-									"//     const myRequest = JSON.parse(pm.request.body.raw);",
-									"//     const user_name_request = myRequest.name;",
-									"// // console.log(JSON.stringify(user_name_request));",
-									"//     console.log(user_name_request);",
-									"",
-									"",
-									"// // const myRequest = pm.request.toJSON().body.raw;",
-									"// // const user_name_request = myRequest.name;",
-									"// // console.log(myRequest.name);",
-									"",
-									"",
-									"// // if (user_name_request === JSON.stringify(user_name)){",
-									" ",
-									"//     if (user_name_request === user_name){",
-									"",
-									"//     console.log(\"Request and Response MATCH\");",
-									"// }",
-									"//     else{",
-									"//     console.log(\"Request and Response DONT MATCH\");",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}\n\n// {\n//     \"name\": \"user1\",\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"role\": \"user\"\n// }\n\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{auth_url}}/register",
-							"host": [
-								"{{auth_url}}"
-							],
-							"path": [
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "first",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});",
-									"",
-									"// pm.test(\"User unauthorized\", function () {",
-									"//     pm.response.to.have.body(\"Unauthorized\");",
-									"// });",
-									"",
-									"pm.test(\"User unauthorized\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{examp_url}}/first",
-							"host": [
-								"{{examp_url}}"
-							],
-							"path": [
-								"first"
-							]
-						}
-					},
-					"response": []
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseInJson = pm.response.json();",
+							"pm.collectionVariables.set(\"role\", responseInJson.role);",
+							"",
+							"// console.log(\"role: \" + pm.collectionVariables.get(\"role\"));",
+							"",
+							"pm.test(\"register\", () => {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"    // if (responseJson._id != undefined) {",
+							"    //     pm.expect(responseJson._id).to.have.lengthOf(36);",
+							"    // };",
+							"    if (responseJson.message != undefined && ",
+							"        responseJson.message === \"User already exist\") {",
+							"        pm.expect.fail(\"User already exists\");",
+							"    };",
+							"});",
+							"",
+							"pm.test(\"user name from request and response MATCH\", () => {",
+							"    const responseInJson = pm.response.json();",
+							"    const user_name = responseInJson.name;",
+							"    const myRequest = JSON.parse(pm.request.body.raw);",
+							"    const user_name_request = myRequest.name;",
+							"    pm.expect(user_name).to.eql(user_name_request);    ",
+							"    if (user_name != user_name_request){",
+							"        pm.expect.fail(\"user name from request and response DONT MATCH\");",
+							"    };",
+							"});",
+							"",
+							"pm.test(\"user email from request and response MATCH\", () => {",
+							"    const responseInJson = pm.response.json();",
+							"    const user_email = responseInJson.email;",
+							"    const myRequest = JSON.parse(pm.request.body.raw);",
+							"    const user_email_request = myRequest.email;",
+							"    pm.expect(user_email).to.eql(user_email_request);    ",
+							"    if (user_email != user_email_request){",
+							"        pm.expect.fail(\"user email from request and response DONT MATCH\");",
+							"    };",
+							"});",
+							"",
+							"pm.test(\"auth role from request and response MATCH\", () => {",
+							"    const responseInJson = pm.response.json();",
+							"    const auth_role = responseInJson.role;",
+							"    const myRequest = JSON.parse(pm.request.body.raw);",
+							"    const auth_role_request = myRequest.role;",
+							"    pm.expect(auth_role).to.eql(auth_role_request);    ",
+							"    if (auth_role != auth_role_request){",
+							"        pm.expect.fail(\"auth role from request and response DONT MATCH\");",
+							"    };",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
-			]
-		},
-		{
-			"name": "login-non-existent-user",
-			"item": [
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"User not found, code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
-									"",
-									"    pm.test(\"User not found\", function () {",
-									"        var jsonData = pm.response.json();",
-									"        pm.expect(jsonData.message).to.eql(\"User not found.\");",
-									"    });",
-									"});",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\n//     \"name\": \"{{name}}\",\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\",\n//     \"role\": \"{{role}}\"\n// }\n\n {\n    \"name\": \"user1\",\n    \"email\": \"user1@gmail.com\",\n    \"password\": \"111111\",\n    \"role\": \"user\"\n}\n\n// {\n//     \"name\": \"admin1\",\n//     \"email\": \"admin1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"role\": \"admin\"\n// }\n\n// {\n//     \"name\": \"guest4\",\n//     \"email\": \"guest4@gmail.com\",\n//     \"password\": \"141414\",\n//     \"role\": \"guest\"\n// }\n",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"user{{$randomInt}}@gmail.com\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user{{$randomInt}}@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{auth_url}}/login",
-							"host": [
-								"{{auth_url}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
+					}
 				},
-				{
-					"name": "first",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});",
-									"",
-									"pm.test(\"User unauthorized\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
+				"url": {
+					"raw": "{{base_url}}/user-mngr/register",
+					"host": [
+						"{{base_url}}"
 					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{examp_url}}/first",
-							"host": [
-								"{{examp_url}}"
-							],
-							"path": [
-								"first"
-							]
-						}
-					},
-					"response": []
+					"path": [
+						"user-mngr",
+						"register"
+					]
 				}
-			]
-		},
-		{
-			"name": "login-with-wrong-password",
-			"item": [
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"User or password incorrect, code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
-									"",
-									"    pm.test(\"User or password incorrect\", function () {",
-									"        var jsonData = pm.response.json();",
-									"        pm.expect(jsonData.message).to.eql(\"User or password incorrect\");",
-									"    });",
-									"});",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{$randomInt}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"{{$randomInt}}\"\n// }\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{auth_url}}/login",
-							"host": [
-								"{{auth_url}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "first",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});",
-									"",
-									"pm.test(\"User unauthorized\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{examp_url}}/first",
-							"host": [
-								"{{examp_url}}"
-							],
-							"path": [
-								"first"
-							]
-						}
-					},
-					"response": []
-				}
-			]
+			},
+			"response": []
 		},
 		{
 			"name": "login",
-			"item": [
+			"event": [
 				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"var responseInJson = pm.response.json();",
-									"",
-									"pm.collectionVariables.set(\"token\", responseInJson.token);",
-									"",
-									"//console.log(\"token: \" + pm.collectionVariables.get(\"token\"));"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{auth_url}}/login",
-							"host": [
-								"{{auth_url}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "first",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"User authorized\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"You have reached the first protected route\");",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-JWT-Token",
-								"value": "{{token}}",
-								"type": "text"
-							}
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"var token = jsonData.token;",
+							"",
+							"pm.environment.set(\"xjwttoken\", token);",
+							"",
+							"var responseInJson = pm.response.json();",
+							"",
+							"pm.collectionVariables.set(\"role\", responseInJson.user.role);",
+							"",
+							"// console.log(\"role: \" + pm.collectionVariables.get(\"role\"));",
+							"",
+							"pm.test(\"Auth_role MATCH with role from previous request\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.user.role).to.eql(pm.collectionVariables.get(\"role\"));",
+							"});",
+							""
 						],
-						"url": {
-							"raw": "{{examp_url}}/first",
-							"host": [
-								"{{examp_url}}"
-							],
-							"path": [
-								"first"
-							]
-						}
-					},
-					"response": []
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-JWT-Token",
+						"value": "{{xjwttoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\"\n// }\n\n{\n    \"email\": \"user1@gmail.com\",\n    \"password\": \"111111\"\n}\n\n// {\n//     \"email\": \"admin1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n\n// {\n//     \"email\": \"guest4@gmail.com\",\n//     \"password\": \"141414\"\n// }\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{auth_url}}/login",
+					"host": [
+						"{{auth_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"name": "change-password",
-			"item": [
+			"name": "first",
+			"event": [
 				{
-					"name": "change-password",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordNew\":\"{{passwordNew}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"passwordNew\":\"222222\"\n// }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{auth_url}}/change-password",
-							"host": [
-								"{{auth_url}}"
-							],
-							"path": [
-								"change-password"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "first",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});",
-									"",
-									"pm.test(\"User unauthorized\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{examp_url}}/first",
-							"host": [
-								"{{examp_url}}"
-							],
-							"path": [
-								"first"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "login-with-old-password",
-			"item": [
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Login with old password\", function () {",
-									"    pm.response.to.have.status(404);",
-									"});",
-									"pm.test(\"User or password incorrect\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"User or password incorrect\");",
-									"});",
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{auth_url}}/login",
-							"host": [
-								"{{auth_url}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "first",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});",
-									"",
-									"pm.test(\"User unauthorized\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"Required X-JWT-Token header not found.\");",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{examp_url}}/first",
-							"host": [
-								"{{examp_url}}"
-							],
-							"path": [
-								"first"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "login-with-new-password",
-			"item": [
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Login with new password\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"var responseInJson = pm.response.json();",
-									"",
-									"pm.collectionVariables.set(\"token\", responseInJson.token);",
-									"",
-									"// console.log(\"token: \" + pm.collectionVariables.get(\"token\"));"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{passwordNew}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"222222\"\n// }\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{auth_url}}/login",
-							"host": [
-								"{{auth_url}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "first",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"User authorized\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.message).to.eql(\"You have reached the first protected route\");",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-JWT-Token",
-								"value": "{{token}}",
-								"type": "text"
-							}
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"User authorized\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"You have reached the first protected route\");",
+							"});"
 						],
-						"url": {
-							"raw": "{{examp_url}}/first",
-							"host": [
-								"{{examp_url}}"
-							],
-							"path": [
-								"first"
-							]
-						}
-					},
-					"response": []
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-JWT-Token",
+						"value": "{{xjwttoken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{examp_url}}/first",
+					"host": [
+						"{{examp_url}}"
+					],
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rbac/acl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// for user and admin code 200 + message \"You are authorized to access this resource\"",
+							"",
+							"// for guest code 403 + message \"Forbidden\"",
+							"",
+							"//Check access",
+							"",
+							"// console.log(\"role: \" + pm.collectionVariables.get(\"role\"));",
+							"",
+							"",
+							"pm.test(\"user role and permissions MATCH\" , () => {",
+							"    const role = pm.collectionVariables.get(\"role\");",
+							"    pm.expect(role).to.be.oneOf([\"user\", \"admin\", \"guest\"]);",
+							"    pm.expect (pm.response.code).to.be.oneOf([200, 401, 403]); ",
+							"",
+							"    if (pm.response.code === 401) {",
+							"        // console.log(pm.response)",
+							"        // pm.response.to.have.status(\"Unauthorized\");",
+							"        pm.expect.fail(\"a user has to login\")",
+							"        return;",
+							"    }",
+							"   ",
+							"",
+							"    if ((role === \"user\") || (role === \"admin\")) {",
+							"        const responseInJson = pm.response.json();",
+							"        const message = responseInJson.message;",
+							"        pm.response.to.have.status(200);",
+							"        (message === \"You are authorized to access this resource\");",
+							"    }",
+							"    if (role === \"guest\" ) {",
+							"        const responseInJson = pm.response.json();",
+							"        const message = responseInJson.message;",
+							"        pm.response.to.have.status(403);",
+							"        (message === \"You have no permission for the operation\");",
+							"    }",
+							" });",
+							"",
+							"  ",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-JWT-Token",
+						"value": "{{xjwttoken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{examp_url}}/test-acl",
+					"host": [
+						"{{examp_url}}"
+					],
+					"path": [
+						"test-acl"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"variable": [
 		{
-			"key": "token",
+			"key": "role",
+			"value": ""
+		},
+		{
+			"key": "auth_role",
 			"value": ""
 		}
 	]

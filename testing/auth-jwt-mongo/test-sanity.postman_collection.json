@@ -88,7 +88,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
+							"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\"\n// }\n\n{\n    \"email\": \"user1@gmail.com\",\n    \"password\": \"111111\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -240,7 +240,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}\n\n// {\n//     \"name\": \"guest1\",\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"11221111\",\n//     \"role\": \"guest\"\n// }\n\n",
+							"raw": "// {\n//     \"name\": \"{{name}}\",\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\",\n//     \"role\": \"{{role}}\"\n// }\n\n{\n    \"name\": \"admin\",\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"111111\",\n    \"role\": \"admin\"\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -248,11 +248,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{auth_url}}/register",
+							"raw": "{{base_url}}/user-mngr/register",
 							"host": [
-								"{{auth_url}}"
+								"{{base_url}}"
 							],
 							"path": [
+								"user-mngr",
 								"register"
 							]
 						}
@@ -352,7 +353,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"user{{$randomInt}}@gmail.com\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user{{$randomInt}}@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
+							"raw": "// {\n//     \"email\": \"user{{$randomInt}}@gmail.com\",\n//     \"password\": \"{{password}}\"\n// }\n\n{\n    \"email\": \"user{{$randomInt}}@gmail.com\",\n    \"password\": \"111111\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -460,7 +461,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{$randomInt}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"{{$randomInt}}\"\n// }\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"{{$randomInt}}\"\n// }\n",
+							"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{$randomInt}}\"\n// }\n\n{\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"{{$randomInt}}\"\n}\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"{{$randomInt}}\"\n// }\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -565,7 +566,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"11221111\"\n// }\n",
+							"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\"\n// }\n\n{\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"111111\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -651,7 +652,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordNew\":\"{{passwordNew}}\"\n}\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"444444\",\n//     \"passwordNew\":\"55555\"\n// }",
+							"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\",\n//     \"passwordNew\":\"{{passwordNew}}\"\n// }\n\n{\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"111111\",\n    \"passwordNew\":\"222222\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -659,11 +660,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{auth_url}}/change-password",
+							"raw": "{{base_url}}/user-mngr/change-password",
 							"host": [
-								"{{auth_url}}"
+								"{{base_url}}"
 							],
 							"path": [
+								"user-mngr",
 								"change-password"
 							]
 						}
@@ -743,7 +745,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"11221111\"\n// }\n",
+							"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\"\n// }\n\n{\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"111111\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -831,7 +833,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{passwordNew}}\"\n}\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"55555\"\n// }\n",
+							"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{passwordNew}}\"\n// }\n\n{\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"222222\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"

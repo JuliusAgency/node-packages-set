@@ -65,7 +65,8 @@
 							"",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -82,11 +83,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{auth_url}}/register",
+					"raw": "{{base_url}}/user-mngr/register",
 					"host": [
-						"{{auth_url}}"
+						"{{base_url}}"
 					],
 					"path": [
+						"user-mngr",
 						"register"
 					]
 				}
@@ -104,9 +106,12 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"var responseInJson = pm.response.json();",
+							"var jsonData = pm.response.json();",
+							"var token = jsonData.token;",
 							"",
-							"pm.collectionVariables.set(\"token\", responseInJson.token);",
+							"pm.environment.set(\"xjwttoken\", token);",
+							"",
+							"var responseInJson = pm.response.json();",
 							"",
 							"pm.collectionVariables.set(\"role\", responseInJson.user.role);",
 							"",
@@ -118,13 +123,20 @@
 							"});",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "X-JWT-Token",
+						"value": "{{xjwttoken}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n\n// {\n//     \"email\": \"admin1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n\n// {\n//     \"email\": \"guest4@gmail.com\",\n//     \"password\": \"141414\"\n// }\n",
@@ -161,7 +173,8 @@
 							"    pm.expect(pm.response.text()).to.include(\"You have reached the first protected route\");",
 							"});"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -170,7 +183,7 @@
 				"header": [
 					{
 						"key": "X-JWT-Token",
-						"value": "{{token}}",
+						"value": "{{xjwttoken}}",
 						"type": "text"
 					}
 				],
@@ -187,7 +200,7 @@
 			"response": []
 		},
 		{
-			"name": "rbac",
+			"name": "rbac/acl",
 			"event": [
 				{
 					"listen": "test",
@@ -233,7 +246,8 @@
 							"",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -242,17 +256,17 @@
 				"header": [
 					{
 						"key": "X-JWT-Token",
-						"value": "{{token}}",
+						"value": "{{xjwttoken}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{examp_url}}/test-rbac",
+					"raw": "{{examp_url}}/test-acl",
 					"host": [
 						"{{examp_url}}"
 					],
 					"path": [
-						"test-rbac"
+						"test-acl"
 					]
 				}
 			},
@@ -286,10 +300,6 @@
 		},
 		{
 			"key": "auth_role",
-			"value": ""
-		},
-		{
-			"key": "token",
 			"value": ""
 		}
 	]
