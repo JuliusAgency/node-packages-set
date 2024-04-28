@@ -61,7 +61,8 @@
 							"",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -78,11 +79,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{auth_url}}/register",
+					"raw": "{{base_url}}/user-mngr/register",
 					"host": [
-						"{{auth_url}}"
+						"{{base_url}}"
 					],
 					"path": [
+						"user-mngr",
 						"register"
 					]
 				}
@@ -112,7 +114,8 @@
 							"});",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -175,7 +178,7 @@
 			"response": []
 		},
 		{
-			"name": "rbac",
+			"name": "rbac/acl",
 			"event": [
 				{
 					"listen": "test",
@@ -218,7 +221,8 @@
 							"",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -226,12 +230,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{examp_url}}/test-rbac",
+					"raw": "{{examp_url}}/{{rbac-acl}}",
 					"host": [
 						"{{examp_url}}"
 					],
 					"path": [
-						"test-rbac"
+						"{{rbac-acl}}"
 					]
 				}
 			},
@@ -248,10 +252,11 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.collectionVariables.role = \"xyz\";",
-							" console.log (pm.collectionVariables.get(\"role\"));"
+							"// pm.collectionVariables.role = \"xyz\";",
+							"//  console.log (pm.collectionVariables.get(\"role\"));"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],

@@ -61,7 +61,8 @@
 							"",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -70,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "// {\n//     \"name\": \"{{name}}\",\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\",\n//     \"role\": \"{{role}}\"\n// }\n\n//  {\n//     \"name\": \"user1\",\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"role\": \"user\"\n// }\n\n// {\n//     \"name\": \"admin1\",\n//     \"email\": \"admin1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"role\": \"admin\"\n// }\n\n{\n    \"name\": \"guest1\",\n    \"email\": \"guest1@gmail.com\",\n    \"password\": \"111111\",\n    \"role\": \"guest\"\n}\n",
+					"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}\n\n//  {\n//     \"name\": \"user1\",\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"role\": \"user\"\n// }\n\n// {\n//     \"name\": \"admin1\",\n//     \"email\": \"admin1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"role\": \"admin\"\n// }\n\n// {\n//     \"name\": \"guest1\",\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"111111\",\n//     \"role\": \"guest\"\n// }\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -78,11 +79,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{auth_url}}/register",
+					"raw": "{{base_url}}/user-mngr/register",
 					"host": [
-						"{{auth_url}}"
+						"{{base_url}}"
 					],
 					"path": [
+						"user-mngr",
 						"register"
 					]
 				}
@@ -112,7 +114,8 @@
 							"});",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -121,7 +124,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "// {\n//     \"email\": \"{{email}}\",\n//     \"password\": \"{{password}}\"\n// }\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n\n// {\n//     \"email\": \"admin1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n\n{\n    \"email\": \"guest1@gmail.com\",\n    \"password\": \"111111\"\n}\n",
+					"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}\n\n// {\n//     \"email\": \"user1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n\n// {\n//     \"email\": \"admin1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n\n// {\n//     \"email\": \"guest1@gmail.com\",\n//     \"password\": \"111111\"\n// }\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -175,7 +178,7 @@
 			"response": []
 		},
 		{
-			"name": "rbac",
+			"name": "rbac/acl",
 			"event": [
 				{
 					"listen": "test",
@@ -218,7 +221,8 @@
 							"",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -226,12 +230,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{examp_url}}/test-rbac",
+					"raw": "{{examp_url}}/{{rbac-acl}}",
 					"host": [
 						"{{examp_url}}"
 					],
 					"path": [
-						"test-rbac"
+						"{{rbac-acl}}"
 					]
 				}
 			},
@@ -248,10 +252,11 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.collectionVariables.role = \"xyz\";",
-							" console.log (pm.collectionVariables.get(\"role\"));"
+							"// pm.collectionVariables.role = \"xyz\";",
+							"//  console.log (pm.collectionVariables.get(\"role\"));"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
