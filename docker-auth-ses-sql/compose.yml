@@ -3,11 +3,10 @@
 # https://docs.docker.com/compose/compose-file/#expose
 # The ports tag will be mapping the host port with the container port HOST:CONTAINER
 
-version: "3.8"
 services:
   pgsql:
     image: postgres:latest
-    container_name: pgsql-jwt-sql-${COMPOSE_PROJECT_NAME}
+    container_name: pgsql-ses-sql-${COMPOSE_PROJECT_NAME}
     restart: always
     networks:
       - internal
@@ -21,7 +20,7 @@ services:
     #   - local_pgdata:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin-jwt-sql-${COMPOSE_PROJECT_NAME}
+    container_name: pgadmin-ses-sql-${COMPOSE_PROJECT_NAME}
     links:
       - pgsql
     depends_on:
@@ -37,9 +36,9 @@ services:
     # volumes:
     #   - pgadmin-data:/var/lib/pgadmin
   authsessql:
-   # image: ghcr.io/juliusagency/node-starter-with-auth-jwt-sql
-    image: ghcr.io/juliusagency/node-starter-with-auth-jwt-sql-${IMAGE_ARCH}:${IMAGE_VER}
-    container_name: auth-jwt-sql-starter-${COMPOSE_PROJECT_NAME}
+  #  image: ghcr.io/juliusagency/node-starter-with-auth-ses-sql
+    image: ghcr.io/juliusagency/node-starter-with-auth-ses-sql-${IMAGE_ARCH}:${IMAGE_VER}
+    container_name: auth-ses-sql-starter-${COMPOSE_PROJECT_NAME}
     links:
       - pgsql
     depends_on:

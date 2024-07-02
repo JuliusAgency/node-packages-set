@@ -3,11 +3,10 @@
 # https://docs.docker.com/compose/compose-file/#expose
 # The ports tag will be mapping the host port with the container port HOST:CONTAINER
 
-version: "3.8"
 services:
   mongo:
     image: "mongo:latest"
-    container_name: mongo-jwt-mongo-${COMPOSE_PROJECT_NAME}
+    container_name: mongo-ses-mongo-${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
     networks:
       - internal
@@ -19,7 +18,7 @@ services:
       - ${EXTERNAL_MONGO_PORT}:${MONGO_PORT}
   mongo-express:
     image: "mongo-express:latest"
-    container_name: mongo-express-jwt-mongo-${COMPOSE_PROJECT_NAME}
+    container_name: mongo-express-ses-mongo-${COMPOSE_PROJECT_NAME}
     depends_on:
       - mongo
     restart: unless-stopped
@@ -34,9 +33,9 @@ services:
     ports:
       - ${EXTERNAL_EXPRESS_PORT}:8081
   authsesmongo:
-#    image: ghcr.io/juliusagency/node-starter-with-auth-jwt-mongo
-    image: ghcr.io/juliusagency/node-starter-with-auth-jwt-mongo-${IMAGE_ARCH}:${IMAGE_VER}
-    container_name: auth-jwt-mongo-starter-${COMPOSE_PROJECT_NAME}
+  #  image: ghcr.io/juliusagency/node-starter-with-auth-ses-mongo
+    image: ghcr.io/juliusagency/node-starter-with-auth-ses-mongo-${IMAGE_ARCH}:${IMAGE_VER}
+    container_name: auth-ses-mongo-starter-${COMPOSE_PROJECT_NAME}
     depends_on:
       - mongo
     restart: always
